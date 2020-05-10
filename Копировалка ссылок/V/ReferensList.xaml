@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="Копировалка_ссылок.V.ReferensList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Копировалка_ссылок.V"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="620">
+    <UserControl.Resources>
+        <!-- TextBlock Style -->
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="#FFFFF0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#DEB887"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!-- CheckBox Style -->
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="Foreground" Value="{StaticResource WhiteBrush}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <StackPanel Orientation="Horizontal">
+                            <Grid>
+                                <Ellipse Fill="#FFF"
+                                         Stroke="Black"
+                                         StrokeThickness="3"
+                                         Width="40"
+                                         Height="40"
+                                         Margin="10"/>
+                                <Ellipse x:Name="checkEllipse"
+                                         Visibility="Hidden"
+                                         Fill="#000"
+                                         Width="20"
+                                         Height="20"
+                                         Margin="10"/>
+                            </Grid>
+                            <TextBlock Text="{TemplateBinding CheckBox.Content}"
+                                       Margin="0,10"/>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="checkEllipse" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+    <Grid Background="{StaticResource GrayBrush}">
+        <Border Background="{StaticResource LightGrayBrush}"
+                CornerRadius="50"
+                Margin="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontSize="30"
+                           Foreground="{StaticResource WhiteBrush}"
+                           Text="Сcылки:"/>
+                    <CheckBox Grid.Column="1"
+                              Content="+play"
+                              x:Name="playCopyCB"/>
+
+                    <CheckBox Grid.Column="2"
+                              Content="ПКМ-delete"
+                              x:Name="rmcCB"/>
+                </Grid>
+
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" Grid.Row="1">
+                    <StackPanel x:Name="referensSP"
+                                Margin="15"/>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

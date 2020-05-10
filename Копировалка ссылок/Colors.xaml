@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Копировалка_ссылок">
+
+    <SolidColorBrush x:Key="DarkGrayBrush" Color="#1f1f1f"/>
+    <Color x:Key="DarkGrayColor">#1f1f1f</Color>
+
+    <SolidColorBrush x:Key="GrayBrush" Color="#202020"/>
+    <Color x:Key="GrayColor">#202020</Color>
+
+    <SolidColorBrush x:Key="LightGrayBrush" Color="#333"/>
+    <Color x:Key="LightGrayColor">#333</Color>
+
+
+    <SolidColorBrush x:Key="DarkBlueBrush" Color="#31314f"/>
+    <Color x:Key="DarkBlueColor">#31314f</Color>
+
+    <SolidColorBrush x:Key="BlueBrush" Color="#535373"/>
+    <Color x:Key="BlueColor">#535373</Color>
+
+    <SolidColorBrush x:Key="LightBlueBrush" Color="#708090"/>
+    <Color x:Key="LightBlueColor">#708090</Color>
+
+    <SolidColorBrush x:Key="DarkKahkiBrush" Color="#8f8b51"/>
+    <Color x:Key="DarkKhakiColor">#8f8b51</Color>
+
+    <SolidColorBrush x:Key="KahkiBrush" Color="#eee8AA"/>
+    <Color x:Key="KhakiColor">#eee8AA</Color>
+
+    <SolidColorBrush x:Key="WhiteBrush" Color="#fffff0"/>
+    <Color x:Key="WhiteColor">#fffff0</Color>
+
+</ResourceDictionary>

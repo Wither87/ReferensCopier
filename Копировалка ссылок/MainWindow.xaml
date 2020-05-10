@@ -1,0 +1,87 @@
+﻿<Window x:Class="Копировалка_ссылок.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Копировалка_ссылок"
+        xmlns:ViewModels="clr-namespace:Копировалка_ссылок.VM"
+        xmlns:Views="clr-namespace:Копировалка_ссылок.V"
+        mc:Ignorable="d"
+        Title="Копировалка"
+        Height="450"
+        Width="800"
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!-- DataTemplates -->
+        <DataTemplate x:Name="ReferensListTemplate" DataType="{x:Type ViewModels:ReferensListVM}">
+            <Views:ReferensList DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="ReferensAddTemplate" DataType="{x:Type ViewModels:ReferensAddVM}">
+            <Views:ReferensAdd DataContext="{Binding}"/>
+        </DataTemplate>
+        
+        <!-- ListBoxItem Style -->
+        <Style TargetType="ListBoxItem" x:Key="styleLBI">
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Margin" Value="0,0,20,5"/>
+            <Setter Property="Background" Value="{StaticResource KahkiBrush}"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily" Value="Artal"/>
+            <Setter Property="FontSize" Value="19"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}"
+                                    CornerRadius="20"/>
+                            <ContentPresenter Content="{TemplateBinding ListBoxItem.Content}"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource DarkKahkiBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Margin" Value="0,0,5,5"/>
+                                <Setter Property="Background" Value="{StaticResource DarkKahkiBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="{StaticResource DarkGrayBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="180"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0" Grid.Column="0" Margin="10" Source="Resources\CopyIcon.png"/>
+
+            <ListBox Grid.Row="1" Background="{StaticResource DarkGrayBrush}">
+                <ListBoxItem Content="Список ссылок"
+                             IsSelected="True"
+                             Selected="ReferensList_Selected"
+                             Style="{StaticResource styleLBI}"/>
+                <ListBoxItem Content="Добавить ссылку"
+                             Selected="ReferensAdd_Selected"
+                             Style="{StaticResource styleLBI}"/>
+            </ListBox>
+
+        </Grid>
+        
+        <ContentControl Grid.Column="1" Content="{Binding}"/>
+    </Grid>
+</Window>
